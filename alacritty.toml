@@ -1,0 +1,32 @@
+[colors.primary]
+background = "#202020"
+foreground = "#ffffff"
+
+[colors.normal]
+black   = "#404040"
+red     = "#ff8080"
+green   = "#80ff80"
+yellow  = "#ffff80"
+blue    = "#8080ff"
+magenta = "#ff80ff"
+cyan    = "#80ffff"
+white   = "#e6e6e6"
+
+[colors.bright]
+black   = "#000000"
+red     = "#ff4040"
+green   = "#40ff40"
+yellow  = "#ffff40"
+blue    = "#4040ff"
+magenta = "#ff40ff"
+cyan    = "#40ffff"
+white   = "#ffffff"
+
+[font.normal]
+family = "Roboto Mono Nerd Font Smbd"
+
+[font]
+size = 7
+
+[window]
+padding = { x = 8, y = 8 }
