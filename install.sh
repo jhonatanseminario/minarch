@@ -16,6 +16,41 @@ success() { printf '%b✔%b %s\n' "$GREEN" "$RESET" "$*" >&2; }
 warn()    { printf '%b!%b %s\n' "$YELLOW" "$RESET" "$*" >&2; }
 error()   { printf '%b✘%b %s\n' "$RED" "$RESET" "$*" >&2; }
 
+require_sudo() {
+    info "Requesting administrator privileges..."
+
+    sudo -v
+
+    while true; do
+        sudo -n true
+        sleep 30
+        kill -0 "$$" || exit
+    done 2>/dev/null &
+
+    success "Administrator privileges granted"
+}
+
+setup_boot() {
+    local grub_linux="/etc/grub.d/10_linux"
+    local grub_default="/etc/default/grub"
+
+    info "Configuring boot settings..."
+
+    info "Clearing login banner..."
+    sudo truncate -s 0 /etc/issue
+
+    info "Disabling GRUB loading messages..."
+    sudo sed -Ei '/^[[:space:]]*echo[[:space:]].*grub_quote/s/^/# /' "$grub_linux"
+
+    info "Setting GRUB timeout to 0 seconds..."
+    sudo sed -Ei 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$grub_default"
+
+    info "Generating GRUB configuration..."
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+    success "Boot settings ready"
+}
+
 install_graphics_drivers() {
     info "Installing Intel graphics drivers..."
     paru -S --needed --noconfirm mesa vulkan-intel intel-media-driver
@@ -337,6 +372,8 @@ reboot_system() {
 }
 
 main() {
+    require_sudo
+    setup_boot
     install_paru
     setup_pacman_colors
     install_graphics_drivers
