@@ -16,6 +16,22 @@ success() { printf '%b✔%b %s\n' "$GREEN" "$RESET" "$*" >&2; }
 warn()    { printf '%b!%b %s\n' "$YELLOW" "$RESET" "$*" >&2; }
 error()   { printf '%b✘%b %s\n' "$RED" "$RESET" "$*" >&2; }
 
+install_graphics_drivers() {
+    info "Installing Intel graphics drivers..."
+    paru -S --needed --noconfirm mesa vulkan-intel intel-media-driver
+    success "Intel graphics drivers ready"
+}
+
+install_audio_stack() {
+    info "Installing PipeWire audio stack..."
+    paru -S --needed --noconfirm pipewire wireplumber pipewire-pulse pipewire-alsa pamixer
+
+    info "Enabling PipeWire user services..."
+    systemctl --user enable --now pipewire wireplumber pipewire-pulse
+
+    success "PipeWire audio stack ready"
+}
+
 install_paru() {
     info "Checking for paru..."
 
@@ -47,6 +63,20 @@ install_paru() {
             exit 1
         fi
     fi
+}
+
+setup_pacman_colors() {
+    local pacman_conf="/etc/pacman.conf"
+
+    info "Enabling pacman/paru colors..."
+
+    if grep -q "^#Color" "$pacman_conf"; then
+        sudo sed -i 's/^#Color/Color/' "$pacman_conf"
+    elif ! grep -q "^Color" "$pacman_conf"; then
+        sudo sed -i '/^\[options\]/a Color' "$pacman_conf"
+    fi
+
+    success "pacman/paru colors enabled"
 }
 
 install_xorg_picom() {
@@ -83,6 +113,16 @@ setup_bash_profile() {
     success "~/.bash_profile ready"
 }
 
+setup_gitconfig() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+
+    info "Setting up ~/.gitconfig..."
+
+    cp "$script_dir/.gitconfig" "$HOME/.gitconfig"
+
+    success "~/.gitconfig ready"
+}
+
 setup_config_dir() {
     info "Setting up ~/.config directory..."
     mkdir -p ~/.config
@@ -90,6 +130,7 @@ setup_config_dir() {
 }
 
 install_dwm() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
     local dwm_dir="$HOME/.config/dwm"
 
     info "Checking for dwm..."
@@ -125,6 +166,7 @@ install_dwm() {
 }
 
 install_slstatus() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
     local slstatus_dir="$HOME/.config/slstatus"
     
     info "Checking for slstatus..."
@@ -250,6 +292,17 @@ setup_xinitrc() {
     success "~/.xinitrc ready"
 }
 
+setup_wallpaper() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+    local wallpaper_dir="$HOME/.config"
+
+    info "Setting up wallpaper..."
+
+    cp "$script_dir/wallpaper.jpg" "$wallpaper_dir/wallpaper.jpg"
+
+    success "Wallpaper ready"
+}
+
 setup_gtk_settings() {
     local gtk_dir="$HOME/.config/gtk-3.0"
     local settings_file="$gtk_dir/settings.ini"
@@ -277,11 +330,21 @@ install_fonts() {
     success "Fonts installed successfully"
 }
 
+reboot_system() {
+    info "Installation complete. Rebooting system..."
+    sleep 3
+    sudo reboot
+}
+
 main() {
     install_paru
+    setup_pacman_colors
+    install_graphics_drivers
+    install_audio_stack
     install_xorg_picom
     setup_bashrc
     setup_bash_profile
+    setup_gitconfig
     setup_config_dir
     install_dwm
     install_slstatus
@@ -291,8 +354,10 @@ main() {
     setup_picom
     setup_xresources
     setup_xinitrc
+    setup_wallpaper
     setup_gtk_settings
     install_fonts
+    reboot_system
 }
 
 main "$@"

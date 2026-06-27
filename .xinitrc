@@ -29,4 +29,6 @@ xidlehook \
     'systemctl suspend' \
     'brightnessctl set $(cat /tmp/brightness_backup)' &
 
+/usr/lib/xdg-desktop-portal-gtk &
+
 exec dwm

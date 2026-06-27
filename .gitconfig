@@ -1,0 +1,9 @@
+[user]
+	name = Jhonatan Seminario
+	email = seminariodev@gmail.com
+[core]
+	editor = code --wait
+	autocrlf = input
+[init]
+	defaultBranch = main
+    
