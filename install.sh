@@ -22,7 +22,7 @@ require_sudo() {
     sudo -v
 
     while true; do
-        sudo -n true
+        sudo -n true || true
         sleep 30
         kill -0 "$$" || exit
     done 2>/dev/null &
@@ -40,7 +40,7 @@ setup_boot() {
     sudo truncate -s 0 /etc/issue
 
     info "Disabling GRUB loading messages..."
-    sudo sed -Ei '/^[[:space:]]*echo[[:space:]].*grub_quote/s/^/# /' "$grub_linux"
+    sudo sed -i "/'\$(echo \"\$message\" | grub_quote)'/{/^[[:space:]]*#/!s/^/#/}" "$grub_linux"
 
     info "Setting GRUB timeout to 0 seconds..."
     sudo sed -Ei 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$grub_default"
@@ -185,6 +185,9 @@ install_dwm() {
 
     info "Applying custom dwm config..."
     cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
+
+    info "Installing the necessary dependencies..."
+    paru -S libxft libxinerama
 
     info "Building and installing dwm..."
     (
