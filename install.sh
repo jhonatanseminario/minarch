@@ -114,6 +114,20 @@ setup_pacman_colors() {
     success "pacman/paru colors enabled"
 }
 
+setup_paru_sudoloop() {
+    local paru_conf="/etc/paru.conf"
+
+    info "Enabling paru SudoLoop..."
+
+    if grep -q "^#SudoLoop" "$paru_conf"; then
+        sudo sed -i 's/^#SudoLoop/SudoLoop/' "$paru_conf"
+    elif ! grep -q "^SudoLoop" "$paru_conf"; then
+        sudo sed -i '/^\[options\]/a SudoLoop' "$paru_conf"
+    fi
+
+    success "paru SudoLoop enabled"
+}
+
 install_xorg_picom() {
     info "Installing Xorg and picom..."
     paru -S --needed --noconfirm xorg-server xorg-xinit picom
@@ -187,7 +201,7 @@ install_dwm() {
     cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
 
     info "Installing the necessary dependencies..."
-    paru -S libxft libxinerama
+    paru -S --needed --noconfirm libxft libxinerama
 
     info "Building and installing dwm..."
     (
@@ -379,6 +393,7 @@ main() {
     setup_boot
     install_paru
     setup_pacman_colors
+    setup_paru_sudoloop
     install_graphics_drivers
     install_audio_stack
     install_xorg_picom
