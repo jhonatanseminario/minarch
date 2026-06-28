@@ -51,6 +51,21 @@ setup_boot() {
     success "Boot settings ready"
 }
 
+setup_autologin() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+    local systemd_dir="/etc/systemd/system/getty@tty1.service.d"
+
+    info "Setting up TTY autologin..."
+
+    sudo mkdir -p "$systemd_dir"
+    sudo cp "$script_dir/getty@tty1.service.d/override.conf" \
+        "$systemd_dir/override.conf"
+
+    sudo systemctl daemon-reload
+
+    success "TTY autologin ready"
+}
+
 install_graphics_drivers() {
     info "Installing Intel graphics drivers..."
     paru -S --needed --noconfirm mesa vulkan-intel intel-media-driver
@@ -391,6 +406,7 @@ reboot_system() {
 main() {
     require_sudo
     setup_boot
+    setup_autologin
     install_paru
     setup_pacman_colors
     setup_paru_sudoloop
