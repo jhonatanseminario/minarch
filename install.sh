@@ -193,6 +193,12 @@ setup_config_dir() {
     success "~/.config ready"
 }
 
+setup_documents_dir() {
+    info "Setting up ~/Documents directory..."
+    mkdir -p ~/Documents
+    success "~/Documents ready"
+}
+
 install_dwm() {
     local script_dir="$(dirname "$(readlink -f "$0")")"
     local dwm_dir="$HOME/.config/dwm"
@@ -211,6 +217,10 @@ install_dwm() {
         info "Cloning dwm repository..."
         git clone https://git.suckless.org/dwm "$dwm_dir"
     fi
+
+    info "Hiding left side of dwm bar..."
+    grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
+        xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"
 
     info "Applying custom dwm config..."
     cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
@@ -417,6 +427,7 @@ main() {
     setup_bash_profile
     setup_gitconfig
     setup_config_dir
+    setup_documents_dir
     install_dwm
     install_slstatus
     install_apps
