@@ -4,7 +4,7 @@ static const unsigned int borderpx  = 0;
 static const unsigned int snap      = 0;
 static const int showbar            = 1;
 static const int topbar             = 0;
-static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "RobotoMono Nerd Font Mono:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#000000";
