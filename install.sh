@@ -322,6 +322,19 @@ install_utilities() {
     install_theming
 }
 
+setup_flameshot() {
+    info "Setting up Flameshot configuration..."
+
+    mkdir -p "$HOME/.config/flameshot"
+
+    cat > "$HOME/.config/flameshot/flameshot.ini" << 'EOF'
+[General]
+useX11LegacyScreenshot=true
+EOF
+
+    success "Flameshot configuration ready"
+}
+
 setup_alacritty() {
     local script_dir="$(dirname "$(readlink -f "$0")")"
     local alacritty_dir="$HOME/.config/alacritty"
@@ -432,6 +445,7 @@ main() {
     install_slstatus
     install_apps
     install_utilities
+    setup_flameshot
     setup_alacritty
     setup_picom
     setup_xresources
