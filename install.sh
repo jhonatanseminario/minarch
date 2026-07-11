@@ -46,7 +46,7 @@ setup_boot() {
     sudo sed -Ei 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' "$grub_default"
 
     info "Setting GRUB kernel parameters..."
-    sudo sed -Ei 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.show_status=false"/' "$grub_default"
+    sudo sed -Ei 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.show_status=false vt.global_cursor_default=0"/' "$grub_default"
 
     info "Generating GRUB configuration..."
     sudo grub-mkconfig -o /boot/grub/grub.cfg
