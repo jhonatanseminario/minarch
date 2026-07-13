@@ -423,6 +423,21 @@ install_fonts() {
     success "Fonts installed successfully"
 }
 
+move_minarch() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+    local destination="$HOME/Documents/$(basename "$script_dir")"
+
+    info "Moving MinArch to ~/Documents..."
+
+    if [[ "$script_dir" == "$destination" ]]; then
+        success "MinArch is already in ~/Documents"
+        return
+    fi
+
+    mv "$script_dir" "$destination"
+    success "MinArch moved to ~/Documents"
+}
+
 reboot_system() {
     info "Installation complete. Rebooting system..."
     sleep 3
@@ -456,6 +471,7 @@ main() {
     setup_wallpaper
     setup_gtk_settings
     install_fonts
+    move_minarch
     reboot_system
 }
 
