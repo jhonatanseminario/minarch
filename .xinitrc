@@ -5,7 +5,7 @@ setxkbmap latam
 
 picom &
 slstatus &
-feh --bg-scale ~/.config/wallpaper.jpg &
+feh --bg-scale ~/.config/wallpaper.png &
 flameshot &
 xss-lock -- slock &
 
