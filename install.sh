@@ -391,7 +391,7 @@ setup_wallpaper() {
 
     info "Setting up wallpaper..."
 
-    cp "$script_dir/wallpaper.png" "$wallpaper_dir/wallpaper.png"
+    cp "$script_dir/wallpaper.bmp" "$wallpaper_dir/wallpaper.bmp"
 
     success "Wallpaper ready"
 }
