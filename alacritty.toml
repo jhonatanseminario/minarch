@@ -1,6 +1,6 @@
 [colors.primary]
 background = "#202020"
-foreground = "#ffffff"
+foreground = "#dfdfdf"
 
 [colors.normal]
 black   = "#404040"
@@ -10,23 +10,37 @@ yellow  = "#ffff80"
 blue    = "#8080ff"
 magenta = "#ff80ff"
 cyan    = "#80ffff"
-white   = "#e6e6e6"
+white   = "#bfbfbf"
 
 [colors.bright]
 black   = "#000000"
-red     = "#ff4040"
-green   = "#40ff40"
-yellow  = "#ffff40"
-blue    = "#4040ff"
-magenta = "#ff40ff"
-cyan    = "#40ffff"
+red     = "#ff0000"
+green   = "#00ff00"
+yellow  = "#ffff00"
+blue    = "#0000ff"
+magenta = "#ff00ff"
+cyan    = "#00ffff"
 white   = "#ffffff"
 
 [font.normal]
-family = "Roboto Mono Nerd Font Smbd"
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.bold]
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "RobotoMono Nerd Font"
+style = "Bold"
 
 [font]
 size = 7
 
-[window]
-padding = { x = 8, y = 8 }
+[window.padding]
+x = 14
+y = 14
