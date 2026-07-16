@@ -1,7 +1,7 @@
 #include <X11/XF86keysym.h>
 
 static const unsigned int borderpx  = 0;
-static const unsigned int snap      = 0;
+static const unsigned int snap      = 32;
 static const int showbar            = 1;
 static const int topbar             = 0;
 static const char *fonts[]          = { "RobotoMono Nerd Font:style=Bold:size=10" };
