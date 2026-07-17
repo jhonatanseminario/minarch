@@ -323,6 +323,8 @@ install_utilities() {
     install_dev_runtimes
     install_cli_tools
     install_theming
+
+    paru -S --needed --noconfirm zenity
 }
 
 setup_flameshot() {
