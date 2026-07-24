@@ -327,7 +327,7 @@ install_cli_tools() {
 
 install_theming() {
     info "Installing theming packages..."
-    paru -S --needed --noconfirm bibata-cursor-theme
+    paru -S --needed --noconfirm bibata-cursor-theme-bin
     success "Theming packages ready"
 }
 
