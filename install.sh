@@ -321,7 +321,7 @@ install_dev_runtimes() {
 
 install_cli_tools() {
     info "Installing CLI tools..."
-    paru -S --needed --noconfirm fastfetch eza feh
+    paru -S --needed --noconfirm fastfetch eza bat less feh
     success "CLI tools ready"
 }
 
