@@ -146,6 +146,20 @@ setup_paru_sudoloop() {
     success "paru SudoLoop enabled"
 }
 
+setup_paru_skipreview() {
+    local paru_conf="/etc/paru.conf"
+
+    info "Enabling paru SkipReview..."
+
+    if grep -q "^#SkipReview" "$paru_conf"; then
+        sudo sed -i 's/^#SkipReview/SkipReview/' "$paru_conf"
+    elif ! grep -q "^SkipReview" "$paru_conf"; then
+        sudo sed -i '/^\[options\]/a SkipReview' "$paru_conf"
+    fi
+
+    success "paru SkipReview enabled"
+}
+
 install_xorg_picom() {
     info "Installing Xorg and picom..."
     paru -S --needed --noconfirm xorg-server xorg-xinit picom
@@ -453,6 +467,7 @@ main() {
     install_paru
     setup_pacman_colors
     setup_paru_sudoloop
+    setup_paru_skipreview
     install_graphics_drivers
     install_audio_stack
     install_xorg_picom
