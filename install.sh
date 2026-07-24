@@ -91,16 +91,16 @@ install_paru() {
     if command -v paru >/dev/null 2>&1; then
         success "paru is already installed"
     else
-        info "paru not found, building from AUR..."
+        info "paru not found, downloading precompiled binary from AUR..."
         sudo pacman -S --needed --noconfirm base-devel git
 
         info "Preparing build directory..."
         BUILD_DIR=$(mktemp -d)
 
-        info "Cloning paru repository from AUR..."
-        git clone --depth=1 https://aur.archlinux.org/paru.git "$BUILD_DIR"
+        info "Cloning paru-bin repository from AUR..."
+        git clone --depth=1 https://aur.archlinux.org/paru-bin.git "$BUILD_DIR"
 
-        info "Building and installing paru..."
+        info "Installing precompiled paru binary..."
         (
             cd "$BUILD_DIR"
             makepkg -si --noconfirm
