@@ -7,6 +7,7 @@ picom &
 slstatus &
 feh --bg-scale ~/.config/wallpaper.bmp &
 flameshot &
+copyq &
 xss-lock -- slock &
 
 while true; do

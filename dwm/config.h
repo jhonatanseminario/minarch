@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "" };
 
 static const Rule rules[] = {
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "copyq",    NULL,       NULL,       0,            1,           -1 },
 };
 
 static const float mfact     = 0.55;
@@ -53,6 +53,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_b,      spawn,          SHCMD("google-chrome-stable") },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("flameshot gui") },
+	{ MODKEY,                       XK_v,      spawn,          SHCMD("copyq toggle") },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("slock") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("slock & sleep 0.5 && systemctl suspend") },
 	{ 0,                            XF86XK_AudioMute,          spawn, SHCMD("pamixer -t") },
