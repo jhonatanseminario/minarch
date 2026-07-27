@@ -69,22 +69,6 @@ setup_autologin() {
     success "TTY autologin ready"
 }
 
-install_graphics_drivers() {
-    info "Installing Intel graphics drivers..."
-    paru -S --needed --noconfirm mesa vulkan-intel intel-media-driver
-    success "Intel graphics drivers ready"
-}
-
-install_audio_stack() {
-    info "Installing PipeWire audio stack..."
-    paru -S --needed --noconfirm pipewire wireplumber pipewire-pulse pipewire-alsa pamixer
-
-    info "Enabling PipeWire user services..."
-    systemctl --user enable --now pipewire wireplumber pipewire-pulse
-
-    success "PipeWire audio stack ready"
-}
-
 install_paru() {
     info "Checking for paru..."
 
@@ -160,10 +144,45 @@ setup_paru_skipreview() {
     success "paru SkipReview enabled"
 }
 
-install_xorg_picom() {
-    info "Installing Xorg and picom..."
-    paru -S --needed --noconfirm xorg-server xorg-xinit picom
-    success "Xorg and picom ready"
+pkgs_graphics=(mesa vulkan-intel intel-media-driver)
+pkgs_audio=(pipewire wireplumber pipewire-pulse pipewire-alsa pamixer)
+pkgs_xorg=(xorg-server xorg-xinit picom)
+pkgs_dwm_deps=(libxft libxinerama)
+pkgs_apps=(st alacritty nautilus google-chrome visual-studio-code-bin flameshot)
+pkgs_session=(slock xss-lock xidlehook)
+pkgs_hardware=(brightnessctl playerctl wireless_tools)
+pkgs_dev=(nodejs php)
+pkgs_cli=(fastfetch eza bat less feh zenity)
+pkgs_theming=(bibata-cursor-theme-bin)
+pkgs_fonts=(noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-roboto ttf-roboto-mono-nerd)
+
+install_packages() {
+    info "The following will be installed: graphics drivers, audio stack, Xorg/picom, dwm build dependencies, applications, session/lock tools, hardware control tools, development runtimes, CLI tools, theming packages, and fonts"
+
+    local all_packages=(
+        "${pkgs_graphics[@]}"
+        "${pkgs_audio[@]}"
+        "${pkgs_xorg[@]}"
+        "${pkgs_dwm_deps[@]}"
+        "${pkgs_apps[@]}"
+        "${pkgs_session[@]}"
+        "${pkgs_hardware[@]}"
+        "${pkgs_dev[@]}"
+        "${pkgs_cli[@]}"
+        "${pkgs_theming[@]}"
+        "${pkgs_fonts[@]}"
+    )
+
+    info "Installing ${#all_packages[@]} packages in a single transaction..."
+    paru -S --needed --noconfirm "${all_packages[@]}"
+
+    success "${#all_packages[@]} packages installed successfully"
+}
+
+enable_audio_services() {
+    info "Enabling PipeWire user services..."
+    systemctl --user enable --now pipewire wireplumber pipewire-pulse
+    success "PipeWire audio stack ready"
 }
 
 setup_bashrc() {
@@ -242,9 +261,6 @@ install_dwm() {
     info "Applying custom dwm config..."
     cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
 
-    info "Installing the necessary dependencies..."
-    paru -S --needed --noconfirm libxft libxinerama
-
     info "Building and installing dwm..."
     (
         cd "$dwm_dir"
@@ -293,52 +309,6 @@ install_slstatus() {
         error "Could not install slstatus. The slstatus binary was not found after installation."
         exit 1
     fi
-}
-
-install_apps() {
-    info "Installing terminal, file manager and desktop apps..."
-    paru -S --needed --noconfirm st alacritty nautilus google-chrome visual-studio-code-bin flameshot
-    success "Applications installed successfully"
-}
-
-install_session_tools() {
-    info "Installing session/lock tools..."
-    paru -S --needed --noconfirm slock xss-lock xidlehook
-    success "Session tools ready"
-}
-
-install_hardware_tools() {
-    info "Installing hardware control tools..."
-    paru -S --needed --noconfirm brightnessctl playerctl wireless_tools
-    success "Hardware tools ready"
-}
-
-install_dev_runtimes() {
-    info "Installing development runtimes..."
-    paru -S --needed --noconfirm nodejs php
-    success "Development runtimes ready"
-}
-
-install_cli_tools() {
-    info "Installing CLI tools..."
-    paru -S --needed --noconfirm fastfetch eza bat less feh
-    success "CLI tools ready"
-}
-
-install_theming() {
-    info "Installing theming packages..."
-    paru -S --needed --noconfirm bibata-cursor-theme-bin
-    success "Theming packages ready"
-}
-
-install_utilities() {
-    install_session_tools
-    install_hardware_tools
-    install_dev_runtimes
-    install_cli_tools
-    install_theming
-
-    paru -S --needed --noconfirm zenity
 }
 
 setup_flameshot() {
@@ -433,12 +403,6 @@ setup_gtk_settings() {
     success "GTK settings ready"
 }
 
-install_fonts() {
-    info "Installing fonts..."
-    paru -S --needed --noconfirm noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-roboto ttf-roboto-mono-nerd
-    success "Fonts installed successfully"
-}
-
 move_minarch() {
     local script_dir="$(dirname "$(readlink -f "$0")")"
     local destination="$HOME/Documents/$(basename "$script_dir")"
@@ -468,9 +432,8 @@ main() {
     setup_pacman_colors
     setup_paru_sudoloop
     setup_paru_skipreview
-    install_graphics_drivers
-    install_audio_stack
-    install_xorg_picom
+    install_packages
+    enable_audio_services
     setup_bashrc
     setup_bash_profile
     setup_gitconfig
@@ -478,8 +441,6 @@ main() {
     setup_documents_dir
     install_dwm
     install_slstatus
-    install_apps
-    install_utilities
     setup_flameshot
     setup_alacritty
     setup_picom
@@ -487,7 +448,6 @@ main() {
     setup_xinitrc
     setup_wallpaper
     setup_gtk_settings
-    install_fonts
     move_minarch
     reboot_system
 }
