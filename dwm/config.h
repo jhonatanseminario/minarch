@@ -45,10 +45,10 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0";
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static const Key keys[] = {
-	{ MODKEY,                       XK_Return, spawn,          SHCMD("alacritty") },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("nautilus") },
 	{ MODKEY,                       XK_b,      spawn,          SHCMD("google-chrome-stable") },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") },
