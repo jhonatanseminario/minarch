@@ -146,7 +146,7 @@ setup_paru_skipreview() {
 
 pkgs_graphics=(mesa vulkan-intel intel-media-driver)
 pkgs_audio=(pipewire wireplumber pipewire-pulse pipewire-alsa pamixer)
-pkgs_xorg=(xorg-server xorg-xinit picom)
+pkgs_xorg=(xorg-server xorg-xinit xorg-xinput picom)
 pkgs_dwm_deps=(libxft libxinerama)
 pkgs_apps=(st alacritty nautilus google-chrome visual-studio-code-bin flameshot copyq)
 pkgs_session=(slock xss-lock xidlehook gnome-keyring)

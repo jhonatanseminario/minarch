@@ -3,6 +3,8 @@
 xrdb -merge ~/.Xresources
 setxkbmap latam
 
+xinput set-prop "FTCS0038:00 2808:0101 Touchpad" "libinput Natural Scrolling Enabled" 1
+
 picom &
 slstatus &
 feh --bg-scale ~/.config/wallpaper.bmp &
