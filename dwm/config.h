@@ -1,9 +1,9 @@
 #include <X11/XF86keysym.h>
 
-static const unsigned int borderpx  = 0;
-static const unsigned int snap      = 32;
+static const unsigned int borderpx  = 4;
+static const unsigned int snap      = 16;
 static const int showbar            = 1;
-static const int topbar             = 0;
+static const int topbar             = 1;
 static const char *fonts[]          = { "RobotoMono Nerd Font:style=Bold:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#000000";
@@ -11,9 +11,11 @@ static const char col_gray2[]       = "#000000";
 static const char col_gray3[]       = "#ffffff";
 static const char col_gray4[]       = "#000000";
 static const char col_cyan[]        = "#000000";
+static const char col_bordernorm[]  = "#808080";
+static const char col_bordersel[]   = "#ffffff";
 static const char *colors[][3]      = {
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    [SchemeNorm] = { col_gray3, col_gray1, col_bordernorm },
+    [SchemeSel]  = { col_gray4, col_cyan,  col_bordersel  },
 };
 
 static const char *tags[] = { "" };
