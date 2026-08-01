@@ -41,6 +41,9 @@ style = "Bold"
 [font]
 size = 7
 
+[window]
+opacity = 0.99
+
 [window.padding]
 x = 14
 y = 14
