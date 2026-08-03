@@ -1,6 +1,6 @@
 #include <X11/XF86keysym.h>
 
-static const unsigned int borderpx  = 4;
+static const unsigned int borderpx  = 2;
 static const unsigned int snap      = 16;
 static const int showbar            = 1;
 static const int topbar             = 1;
