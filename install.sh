@@ -254,6 +254,23 @@ install_dwm() {
         git clone https://git.suckless.org/dwm "$dwm_dir"
     fi
 
+    info "Applying fullgaps patch..."
+    if grep -q 'gappx' "$dwm_dir/dwm.c"; then
+        warn "fullgaps patch already applied, skipping..."
+    else
+        curl -fsSL https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-6.4.diff | \
+            patch -p1 -d "$dwm_dir"
+        success "fullgaps patch applied"
+    fi
+
+    info "Adding gaps support to monocle layout..."
+    if grep -q 'm->wx + m->gappx, m->wy + m->gappx' "$dwm_dir/dwm.c"; then
+        warn "monocle gaps already applied, skipping..."
+    else
+        sed -i 's/resize(c, m->wx, m->wy, m->ww - 2 \* c->bw, m->wh - 2 \* c->bw, 0);/resize(c, m->wx + m->gappx, m->wy + m->gappx, m->ww - 2 \* c->bw - 2 \* m->gappx, m->wh - 2 \* c->bw - 2 \* m->gappx, 0);/' "$dwm_dir/dwm.c"
+        success "monocle gaps applied"
+    fi
+
     info "Hiding left side of dwm bar..."
     grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
         xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"

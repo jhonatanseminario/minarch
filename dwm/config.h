@@ -1,6 +1,7 @@
 #include <X11/XF86keysym.h>
 
 static const unsigned int borderpx  = 2;
+static const unsigned int gappx     = 8;
 static const unsigned int snap      = 16;
 static const int showbar            = 1;
 static const int topbar             = 1;
@@ -88,6 +89,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_plus,   setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_plus,   setgaps,        {.i =  0 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
