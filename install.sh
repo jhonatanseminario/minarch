@@ -271,6 +271,18 @@ install_dwm() {
         success "monocle gaps applied"
     fi
 
+    info "Applying movestack patch..."
+    if [[ -f "$dwm_dir/movestack.c" ]]; then
+        warn "movestack patch already applied, skipping..."
+    else
+        curl -fsSL https://dwm.suckless.org/patches/movestack/dwm-movestack-20211115-a786211.diff | \
+            patch -p1 -d "$dwm_dir" || true
+
+        rm -f "$dwm_dir/config.def.h.rej"
+
+        success "movestack patch applied"
+    fi
+
     info "Hiding left side of dwm bar..."
     grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
         xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"
