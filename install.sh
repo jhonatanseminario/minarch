@@ -283,6 +283,15 @@ install_dwm() {
         success "movestack patch applied"
     fi
 
+    info "Applying tiledmove patch..."
+    if grep -q 'recttomon(ev.xmotion.x_root' "$dwm_dir/dwm.c"; then
+        warn "tiledmove patch already applied, skipping..."
+    else
+        curl -fsSL https://dwm.suckless.org/patches/tiledmove/dwm-tiledmove-20231210-b731.diff | \
+            patch -p1 -d "$dwm_dir"
+        success "tiledmove patch applied"
+    fi
+
     info "Hiding left side of dwm bar..."
     grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
         xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"
