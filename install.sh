@@ -292,12 +292,28 @@ install_dwm() {
         success "tiledmove patch applied"
     fi
 
+    info "Applying cfacts patch..."
+    if grep -q 'cfact' "$dwm_dir/dwm.c"; then
+        warn "cfacts patch already applied, skipping..."
+    else
+        curl -fsSL https://dwm.suckless.org/patches/cfacts/dwm-cfacts-20200913-61bb8b2.diff | \
+            patch -p1 -d "$dwm_dir" || true
+
+        rm -f "$dwm_dir/config.def.h.rej"
+        rm -f "$dwm_dir/dwm.c.rej"
+
+        success "cfacts patch applied"
+    fi
+
     info "Hiding left side of dwm bar..."
     grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
         xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"
 
     info "Applying custom dwm config..."
     cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
+
+    info "Applying custom dwm source..."
+    cp "$script_dir/dwm/dwm.c" "$dwm_dir/dwm.c"
 
     info "Building and installing dwm..."
     (
