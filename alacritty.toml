@@ -42,7 +42,7 @@ style = "Bold"
 size = 7
 
 [window]
-opacity = 0.99
+opacity = 0.98
 
 [window.padding]
 x = 14
