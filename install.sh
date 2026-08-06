@@ -246,74 +246,14 @@ install_dwm() {
         return
     fi
 
+    info "Setting up dwm source..."
+
     if [[ -d "$dwm_dir" ]]; then
-        warn "dwm directory already exists, pulling latest changes..."
-        git -C "$dwm_dir" pull
-    else
-        info "Cloning dwm repository..."
-        git clone https://git.suckless.org/dwm "$dwm_dir"
+        warn "dwm directory already exists, removing..."
+        rm -rf "$dwm_dir"
     fi
 
-    info "Applying fullgaps patch..."
-    if grep -q 'gappx' "$dwm_dir/dwm.c"; then
-        warn "fullgaps patch already applied, skipping..."
-    else
-        curl -fsSL https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-6.4.diff | \
-            patch -p1 -d "$dwm_dir"
-        success "fullgaps patch applied"
-    fi
-
-    info "Adding gaps support to monocle layout..."
-    if grep -q 'm->wx + m->gappx, m->wy + m->gappx' "$dwm_dir/dwm.c"; then
-        warn "monocle gaps already applied, skipping..."
-    else
-        sed -i 's/resize(c, m->wx, m->wy, m->ww - 2 \* c->bw, m->wh - 2 \* c->bw, 0);/resize(c, m->wx + m->gappx, m->wy + m->gappx, m->ww - 2 \* c->bw - 2 \* m->gappx, m->wh - 2 \* c->bw - 2 \* m->gappx, 0);/' "$dwm_dir/dwm.c"
-        success "monocle gaps applied"
-    fi
-
-    info "Applying movestack patch..."
-    if [[ -f "$dwm_dir/movestack.c" ]]; then
-        warn "movestack patch already applied, skipping..."
-    else
-        curl -fsSL https://dwm.suckless.org/patches/movestack/dwm-movestack-20211115-a786211.diff | \
-            patch -p1 -d "$dwm_dir" || true
-
-        rm -f "$dwm_dir/config.def.h.rej"
-
-        success "movestack patch applied"
-    fi
-
-    info "Applying tiledmove patch..."
-    if grep -q 'recttomon(ev.xmotion.x_root' "$dwm_dir/dwm.c"; then
-        warn "tiledmove patch already applied, skipping..."
-    else
-        curl -fsSL https://dwm.suckless.org/patches/tiledmove/dwm-tiledmove-20231210-b731.diff | \
-            patch -p1 -d "$dwm_dir"
-        success "tiledmove patch applied"
-    fi
-
-    info "Applying cfacts patch..."
-    if grep -q 'cfact' "$dwm_dir/dwm.c"; then
-        warn "cfacts patch already applied, skipping..."
-    else
-        curl -fsSL https://dwm.suckless.org/patches/cfacts/dwm-cfacts-20200913-61bb8b2.diff | \
-            patch -p1 -d "$dwm_dir" || true
-
-        rm -f "$dwm_dir/config.def.h.rej"
-        rm -f "$dwm_dir/dwm.c.rej"
-
-        success "cfacts patch applied"
-    fi
-
-    info "Hiding left side of dwm bar..."
-    grep -n 'drw_text(' "$dwm_dir/dwm.c" | grep -v 'stext' | grep -v '//' | cut -d: -f1 | \
-        xargs -r -I{} sed -i '{}s|^|// |' "$dwm_dir/dwm.c"
-
-    info "Applying custom dwm config..."
-    cp "$script_dir/dwm/config.h" "$dwm_dir/config.h"
-
-    info "Applying custom dwm source..."
-    cp "$script_dir/dwm/dwm.c" "$dwm_dir/dwm.c"
+    cp -r "$script_dir/dwm" "$dwm_dir"
 
     info "Building and installing dwm..."
     (
