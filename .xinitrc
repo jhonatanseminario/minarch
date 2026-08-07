@@ -10,7 +10,7 @@ slstatus &
 feh --bg-scale ~/.config/wallpaper.bmp &
 flameshot &
 copyq &
-xss-lock -- sh -c 'playerctl pause; slock' &
+xss-lock -- slock &
 
 while true; do
   BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
@@ -26,7 +26,7 @@ xidlehook \
     'CURRENT=$(brightnessctl get); echo $CURRENT > /tmp/brightness_backup; brightnessctl set $((CURRENT / 2))' \
     'brightnessctl set $(cat /tmp/brightness_backup)' \
   --timer 300 \
-    'playerctl pause; slock' \
+    'slock' \
     'brightnessctl set $(cat /tmp/brightness_backup)' \
   --timer 300 \
     'systemctl suspend' \
