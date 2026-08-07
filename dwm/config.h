@@ -1553,8 +1553,8 @@ static const Button buttons[] = {
 	#endif // PLACEMOUSE_PATCH
 	{ ClkClientWin,         MODKEY,              Button2,        togglefloating, {0} },
 	#if DRAGFACT_PATCH && CFACTS_PATCH
-	{ ClkClientWin,         MODKEY,              Button3,        resizeorfacts,  {0} },
-	{ ClkClientWin,         MODKEY|ShiftMask,    Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY|ShiftMask,    Button3,        resizeorfacts,  {0} },
+	{ ClkClientWin,         MODKEY,              Button3,        resizemouse,    {0} },
 	#else
 	{ ClkClientWin,         MODKEY,              Button3,        resizemouse,    {0} },
 	#endif // DRAGFACT_PATCH
