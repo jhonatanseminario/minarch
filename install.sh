@@ -153,7 +153,7 @@ pkgs_session=(slock xss-lock xidlehook gnome-keyring)
 pkgs_hardware=(brightnessctl playerctl wireless_tools)
 pkgs_dev=(nodejs php)
 pkgs_cli=(fastfetch eza bat less feh zenity)
-pkgs_theming=(bibata-cursor-theme-bin)
+pkgs_theming=(bibata-cursor-theme-bin adw-gtk-theme papirus-icon-theme)
 pkgs_fonts=(noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-roboto ttf-roboto-mono-nerd)
 
 install_packages() {
@@ -377,22 +377,14 @@ setup_wallpaper() {
 }
 
 setup_gtk_settings() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
     local gtk_dir="$HOME/.config/gtk-3.0"
-    local settings_file="$gtk_dir/settings.ini"
-    local font_line='gtk-font-name=Roboto 10'
 
     info "Setting up GTK settings..."
 
     mkdir -p "$gtk_dir"
-    touch "$settings_file"
 
-    if ! grep -qF '[Settings]' "$settings_file"; then
-        printf '%s\n' '[Settings]' >> "$settings_file"
-    fi
-
-    if ! grep -qF 'gtk-font-name' "$settings_file"; then
-        printf '%s\n' "$font_line" >> "$settings_file"
-    fi
+    cp "$script_dir/gtk-settings.ini" "$gtk_dir/settings.ini"
 
     success "GTK settings ready"
 }
