@@ -1050,7 +1050,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_c,          spawn,                  SHCMD("code") },
 	{ MODKEY|ShiftMask,             XK_s,          spawn,                  SHCMD("flameshot gui") },
 	{ MODKEY,                       XK_v,          spawn,                  SHCMD("copyq toggle") },
-	{ MODKEY,                       XK_l,          spawn,                  SHCMD("playerctl pause; slock") },
+	{ MODKEY,                       XK_l,          spawn,                  SHCMD("slock") },
 	{ MODKEY|ShiftMask,             XK_l,          spawn,                  SHCMD("systemctl suspend") },
 	{ 0,                            XF86XK_AudioMute,                      spawn, SHCMD("pamixer -t") },
 	{ 0,                            XF86XK_AudioLowerVolume,               spawn, SHCMD("pamixer -d 5") },
