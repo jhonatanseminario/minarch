@@ -11,5 +11,5 @@ static const struct arg args[] = {
 	{ battery_perc, " ┃ 󰁹 %3s%%", "BAT0" },
 	{ battery_state, " %s", "BAT0" },
 	{ datetime, " ┃  %s", "%a %d/%m" },
-	{ datetime, " ┃ 󱑁 %s", "%H:%M " },
+	{ datetime, " ┃ 󱑁 %s", "%H:%M" },
 };
