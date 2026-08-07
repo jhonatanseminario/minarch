@@ -1066,13 +1066,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
 	{ MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return,     spawn,                  {.v = termcmd } },
+	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	#if RIODRAW_PATCH
 	{ MODKEY|ControlMask,           XK_p,          riospawnsync,           {.v = dmenucmd } },
 	{ MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
 	{ MODKEY,                       XK_s,          rioresize,              {0} },
 	#endif // RIODRAW_PATCH
-	{ MODKEY|ShiftMask,             XK_b,          togglebar,              {0} },
+	// { MODKEY|ShiftMask,             XK_b,          togglebar,              {0} },
 	#if TOGGLETOPBAR_PATCH
 	{ MODKEY|ShiftMask,             XK_b,          toggletopbar,           {0} },
 	#endif // TOGGLETOPBAR_PATCH
@@ -1167,7 +1167,7 @@ static const Key keys[] = {
 	#if INSETS_PATCH
 	{ MODKEY|ShiftMask|ControlMask, XK_a,          updateinset,            {.v = &default_inset } },
 	#endif // INSETS_PATCH
-	{ MODKEY,                       XK_Return,     zoom,                   {0} },
+	{ MODKEY|ShiftMask,             XK_Return,     zoom,                   {0} },
 	#if VANITYGAPS_PATCH
 	{ MODKEY|Mod4Mask,              XK_plus,       incrgaps,               {.i = +1 } },
 	{ MODKEY|Mod4Mask,              XK_minus,      incrgaps,               {.i = -1 } },
@@ -1534,7 +1534,7 @@ static const Button buttons[] = {
 	{ ClkStatusText,        0,                   Button2,        spawn,          {.v = statuscmd } },
 	{ ClkStatusText,        0,                   Button3,        spawn,          {.v = statuscmd } },
 	#else
-	{ ClkStatusText,        0,                   Button2,        spawn,          {.v = termcmd } },
+	// { ClkStatusText,        0,                   Button2,        spawn,          {.v = termcmd } },
 	#endif // BAR_STATUSCMD_PATCH
 	#if PLACEMOUSE_PATCH
 	/* placemouse options, choose which feels more natural:
