@@ -1045,7 +1045,6 @@ ResourcePref resources[] = {
 #endif // XRESOURCES_PATCH
 
 static const Key keys[] = {
-	{ MODKEY,                       XK_e,          spawn,                  SHCMD("nautilus") },
 	{ MODKEY,                       XK_b,          spawn,                  SHCMD("google-chrome-stable") },
 	{ MODKEY,                       XK_c,          spawn,                  SHCMD("code") },
 	{ MODKEY|ShiftMask,             XK_s,          spawn,                  SHCMD("flameshot gui") },
