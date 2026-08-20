@@ -16,7 +16,7 @@ while true; do
   BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
   STATUS=$(cat /sys/class/power_supply/BAT0/status)
   if [ "$BATTERY" -le 5 ] && [ "$STATUS" = "Discharging" ]; then
-    alacritty -e sh -c "printf 'Batería al ${BATTERY}%%\nConecta el cargador, crack.\n'; read" &
+    kitty sh -c "printf 'Batería al ${BATTERY}%%\nConecta el cargador, crack.\n'; read" &
   fi
   sleep 60
 done &

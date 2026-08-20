@@ -148,7 +148,7 @@ pkgs_graphics=(mesa vulkan-intel intel-media-driver)
 pkgs_audio=(pipewire wireplumber pipewire-pulse pipewire-alsa pamixer)
 pkgs_xorg=(xorg-server xorg-xinit xorg-xinput picom)
 pkgs_dwm_deps=(libxft libxinerama)
-pkgs_apps=(st alacritty google-chrome visual-studio-code-bin flameshot copyq)
+pkgs_apps=(st kitty google-chrome visual-studio-code-bin flameshot copyq)
 pkgs_session=(slock xss-lock xidlehook gnome-keyring)
 pkgs_hardware=(brightnessctl playerctl wireless_tools)
 pkgs_dev=(nodejs php)
@@ -318,17 +318,17 @@ EOF
     success "Flameshot configuration ready"
 }
 
-setup_alacritty() {
+setup_kitty() {
     local script_dir="$(dirname "$(readlink -f "$0")")"
-    local alacritty_dir="$HOME/.config/alacritty"
+    local kitty_dir="$HOME/.config/kitty"
 
-    info "Setting up Alacritty configuration..."
+    info "Setting up Kitty configuration..."
 
-    mkdir -p "$alacritty_dir"
+    mkdir -p "$kitty_dir"
 
-    cp "$script_dir/alacritty.toml" "$alacritty_dir/alacritty.toml"
+    cp "$script_dir/kitty.conf" "$kitty_dir/kitty.conf"
 
-    success "Alacritty configuration ready"
+    success "Kitty configuration ready"
 }
 
 setup_picom() {
@@ -428,7 +428,7 @@ main() {
     install_dwm
     install_slstatus
     setup_flameshot
-    setup_alacritty
+    setup_kitty
     setup_picom
     setup_xresources
     setup_xinitrc
