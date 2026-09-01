@@ -1,4 +1,27 @@
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+vim.keymap.set("i", "<C-e>", "<Plug>(emmet-expand-abbr)")
+vim.keymap.set("i", "<C-n>", "<Plug>(emmet-move-next)")
+
+vim.g.user_emmet_settings = {
+    html = {
+        snippets = {
+            ["html:5"] = "<!DOCTYPE html>\n"
+                .. '<html lang="${lang}">\n'
+                .. "<head>\n"
+                .. '\t<meta charset="${charset}">\n'
+                .. '\t<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+                .. '\t<title>${1}</title>\n'
+                .. "</head>\n"
+                .. "<body>\n"
+                .. "\t${2}\n"
+                .. "</body>\n"
+                .. "</html>",
+
+            ["script"] = '<script type="module" src="${1}"></script>',
+        },
+    },
+}
+
 vim.g.mapleader = " "
 
 vim.api.nvim_set_hl(0, "Normal", {
@@ -144,7 +167,12 @@ vim.pack.add({
     "https://github.com/windwp/nvim-autopairs",
     "https://github.com/mattn/emmet-vim",
     "https://github.com/3rd/image.nvim",
+    "https://github.com/uga-rosa/ccc.nvim",
 })
+
+require("ccc").setup()
+
+vim.keymap.set("n", "<leader>c", "<cmd>CccPick<CR>")
 
 require("visimatch").setup()
 require("image").setup()
@@ -195,7 +223,11 @@ vim.lsp.enable({
     'ts_ls', 
 })
 
-require("blink.cmp").setup({})
+require("blink.cmp").setup({
+    keymap = {
+        preset = "super-tab",
+    },
+})
 
 vim.lsp.config('*', {
     capabilities = require('blink.cmp').get_lsp_capabilities(),
