@@ -56,6 +56,21 @@ vim.api.nvim_set_hl(0, "StatusLine", {
     bg = "#dfdfdf",
 })
 
+vim.api.nvim_set_hl(0, "StatusLineNC", {
+    fg = "#202020",
+    bg = "#dfdfdf",
+})
+
+vim.api.nvim_set_hl(0, "StatusLineTerm", {
+    fg = "#202020",
+    bg = "#dfdfdf",
+})
+
+vim.api.nvim_set_hl(0, "StatusLineTermNC", {
+    fg = "#202020",
+    bg = "#dfdfdf",
+})
+
 vim.api.nvim_set_hl(0, "Comment", {
     fg = "#9f9f9f",
 })
