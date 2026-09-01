@@ -151,7 +151,7 @@ pkgs_dwm_deps=(libxft libxinerama)
 pkgs_apps=(st kitty google-chrome flameshot copyq)
 pkgs_session=(slock xss-lock xidlehook gnome-keyring)
 pkgs_hardware=(brightnessctl playerctl wireless_tools)
-pkgs_dev=(nodejs php)
+pkgs_dev=(nodejs php ripgrep vscode-langservers-extracted typescript-language-server tree-sitter-cli)
 pkgs_cli=(fastfetch eza bat less feh zenity superfile)
 pkgs_theming=(bibata-cursor-theme-bin adw-gtk-theme papirus-icon-theme)
 pkgs_fonts=(noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-roboto ttf-roboto-mono-nerd)
@@ -344,6 +344,19 @@ setup_picom() {
     success "picom configuration ready"
 }
 
+setup_nvim() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+    local nvim_dir="$HOME/.config/nvim"
+
+    info "Setting up Neovim configuration..."
+
+    mkdir -p "$nvim_dir"
+
+    cp "$script_dir/init.lua" "$nvim_dir/init.lua"
+
+    success "Neovim configuration ready"
+}
+
 setup_xresources() {
     local xresources="$HOME/.Xresources"
     local cursor_line='Xcursor.theme: Bibata-Modern-Classic'
@@ -430,6 +443,7 @@ main() {
     setup_flameshot
     setup_kitty
     setup_picom
+    setup_nvim
     setup_xresources
     setup_xinitrc
     setup_wallpaper
