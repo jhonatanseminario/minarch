@@ -127,10 +127,12 @@ vim.pack.add({
     "https://github.com/mcauley-penney/visual-whitespace.nvim",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/windwp/nvim-autopairs",
-    "https://github.com/mattn/emmet-vim"
+    "https://github.com/mattn/emmet-vim",
+    "https://github.com/3rd/image.nvim",
 })
 
 require("visimatch").setup()
+require("image").setup()
 
 vim.api.nvim_set_hl(0, "IlluminatedWordText", {
     bg = "#606060",
