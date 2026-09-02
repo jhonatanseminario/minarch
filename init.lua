@@ -437,3 +437,103 @@ vim.api.nvim_set_hl(0, "NvimTreeGitRenamedIcon", { fg = "#80ffff" })
 vim.api.nvim_set_hl(0, "NvimTreeGitDeletedIcon", { fg = "#ff8080" })
 vim.api.nvim_set_hl(0, "NvimTreeGitMergeIcon",   { fg = "#ff80ff" })
 vim.api.nvim_set_hl(0, "NvimTreeGitIgnoredIcon", { fg = "#808080" })
+
+vim.api.nvim_set_hl(0, "@keyword.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.import.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.coroutine.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.conditional.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@punctuation.bracket.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@variable.javascript", {
+    fg = "#ff8080",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.mod.declaration.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.mod.readonly.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@function.method.call.javascript", {
+    fg = "#8080ff",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.typemod.function.readonly.javascript", {
+    fg = "#8080ff",
+})
+
+vim.api.nvim_set_hl(0, "@operator.javascript", {
+    fg = "#8080ff",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.type.property.javascript", {
+    fg = "#ff8080",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.type.variable.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.type.parameter.javascript", {
+    fg = "#ff8080",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.type.function.javascript", {
+    fg = "#8080ff",
+})
+
+vim.api.nvim_set_hl(0, "@number.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@variable.member.javascript", {
+    fg = "#ff8080",
+})
+
+vim.api.nvim_set_hl(0, "@punctuation.special.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.exception.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.operator.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@boolean.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@keyword.return.javascript", {
+    fg = "#ff80ff",
+})
+
+vim.api.nvim_set_hl(0, "@function.call.javascript", {
+    fg = "#8080ff",
+})
+
+vim.api.nvim_set_hl(0, "@constant.builtin.javascript", {
+    fg = "#ffff80",
+})
+
+vim.api.nvim_set_hl(0, "@lsp.typemod.property.declaration.javascript", {
+    fg = "#ff8080",
+})
