@@ -69,6 +69,24 @@ setup_autologin() {
     success "TTY autologin ready"
 }
 
+setup_systemd_watchdog() {
+    local watchdog_dir="/etc/systemd/system.conf.d"
+    local watchdog_conf="$watchdog_dir/watchdog.conf"
+
+    info "Setting up systemd watchdog configuration..."
+
+    sudo mkdir -p "$watchdog_dir"
+
+    sudo bash -c "cat > '$watchdog_conf' <<'EOF'
+[Manager]
+RebootWatchdogSec=0
+EOF"
+
+    sudo systemctl daemon-reexec
+
+    success "systemd watchdog configuration ready"
+}
+
 install_paru() {
     info "Checking for paru..."
 
@@ -427,6 +445,7 @@ main() {
     require_sudo
     setup_boot
     setup_autologin
+    setup_systemd_watchdog
     install_paru
     setup_pacman_colors
     setup_paru_sudoloop
