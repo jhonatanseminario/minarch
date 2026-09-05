@@ -377,7 +377,7 @@ setup_nvim() {
 
 setup_xresources() {
     local xresources="$HOME/.Xresources"
-    local cursor_line='Xcursor.theme: Bibata-Modern-Classic'
+    local cursor_line='Xcursor.theme: Bibata-Original-Classic'
 
     info "Setting up ~/.Xresources..."
 
