@@ -368,9 +368,12 @@ setup_nvim() {
 
     info "Setting up Neovim configuration..."
 
-    mkdir -p "$nvim_dir"
+    if [[ -d "$nvim_dir" ]]; then
+        warn "nvim directory already exists, removing..."
+        rm -rf "$nvim_dir"
+    fi
 
-    cp "$script_dir/init.lua" "$nvim_dir/init.lua"
+    cp -r "$script_dir/nvim" "$nvim_dir"
 
     success "Neovim configuration ready"
 }
