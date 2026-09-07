@@ -1046,7 +1046,7 @@ ResourcePref resources[] = {
 
 static const Key keys[] = {
 	{ MODKEY,                       XK_b,          spawn,                  SHCMD("google-chrome-stable") },
-	{ MODKEY|ShiftMask,             XK_s,          spawn,                  SHCMD("flameshot gui") },
+	{ MODKEY,                       XK_s,          spawn,                  SHCMD("flameshot gui") },
 	{ MODKEY,                       XK_v,          spawn,                  SHCMD("copyq toggle") },
 	{ MODKEY,                       XK_l,          spawn,                  SHCMD("slock") },
 	{ MODKEY|ShiftMask,             XK_l,          spawn,                  SHCMD("systemctl suspend") },
