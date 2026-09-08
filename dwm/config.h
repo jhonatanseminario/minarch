@@ -180,8 +180,8 @@ static char c000000[]                    = "#000000"; // placeholder value
 
 static char normfgcolor[]                = "#ffffff";
 static char normbgcolor[]                = "#000000";
-static char normbordercolor[]            = "#808080";
-static char normfloatcolor[]             = "#808080";
+static char normbordercolor[]            = "#bfbfbf";
+static char normfloatcolor[]             = "#bfbfbf";
 
 static char selfgcolor[]                 = "#000000";
 static char selbgcolor[]                 = "#ffffff";
@@ -215,8 +215,8 @@ static char hidselbgcolor[]              = "#ffffff";
 
 static char urgfgcolor[]                 = "#ffffff";
 static char urgbgcolor[]                 = "#000000";
-static char urgbordercolor[]             = "#808080";
-static char urgfloatcolor[]              = "#808080";
+static char urgbordercolor[]             = "#bfbfbf";
+static char urgfloatcolor[]              = "#bfbfbf";
 
 #if BAR_LTSYMBOL_SCHEME_PATCH
 static char ltsymbolfgcolor[]            = "#222222";
