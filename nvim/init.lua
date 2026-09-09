@@ -1,5 +1,3 @@
-vim.cmd.colorscheme("minarch")
-
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 vim.keymap.set("i", "<C-e>", "<Plug>(emmet-expand-abbr)")
 vim.keymap.set("i", "<C-n>", "<Plug>(emmet-move-next)")
@@ -59,7 +57,11 @@ vim.pack.add({
     "https://github.com/mattn/emmet-vim",
     "https://github.com/3rd/image.nvim",
     "https://github.com/uga-rosa/ccc.nvim",
+    "https://github.com/olimorris/onedarkpro.nvim",
+
 })
+
+vim.cmd.colorscheme("onedark")
 
 require("ccc").setup()
 
