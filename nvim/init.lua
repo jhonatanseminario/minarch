@@ -61,7 +61,7 @@ vim.pack.add({
 
 })
 
-vim.cmd.colorscheme("onedark")
+vim.cmd.colorscheme("onedark_vivid")
 
 require("ccc").setup()
 
@@ -128,7 +128,7 @@ vim.lsp.config('*', {
 
 vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%l%s"
-vim.api.nvim_set_hl(0, "SignColumn", { bg = "#202020" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "#282c34" })
 
 local pick = require("mini.pick")
 
