@@ -59,3 +59,14 @@ PS1='${__prompt_separator}'
 PS1+='\[\e[1;34m\]\w\[\e[0m\]'
 PS1+='\n'
 PS1+='\[\e[1;32m\]❯ \[\e[0m\]'
+
+tui_bg() {
+    local bg="$1"; shift
+    printf '\033]11;%s\033\\' "$bg"
+    trap 'printf "\033]111\033\\"' EXIT
+    "$@"
+    trap - EXIT
+    printf '\033]111\033\\'
+}
+
+alias nvim='tui_bg "#282c34" nvim'
