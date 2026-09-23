@@ -646,7 +646,7 @@ static const BarRule barrules[] = {
 	#elif BAR_STATUSCMD_PATCH && BAR_STATUS_PATCH
 	{ statusmon, 1,     BAR_ALIGN_CENTER, width_status_es,          draw_status_es,         click_statuscmd_es,      NULL,                    "status_es" },
 	#elif BAR_STATUS_PATCH
-	{ statusmon, 1,     BAR_ALIGN_CENTER, width_status_es,          draw_status_es,         click_status,            NULL,                    "status_es" },
+	{ statusmon, 0,     BAR_ALIGN_CENTER, width_status_es,          draw_status_es,         click_status,            NULL,                    "status_es" },
 	#endif // BAR_STATUS2D_PATCH | BAR_STATUSCMD_PATCH
 	#endif // BAR_EXTRASTATUS_PATCH
 	#if BAR_FLEXWINTITLE_PATCH

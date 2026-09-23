@@ -2038,7 +2038,8 @@ drawbarwin(Bar *bar)
 			break;
 		case BAR_ALIGN_LEFT_CENTER:
 		case BAR_ALIGN_CENTER:
-			bar->x[r] = lx + lw / 2 - w / 2;
+			// bar->x[r] = lx + lw / 2 - w / 2;
+			bar->x[r] = bar->bx + bar->bw / 2 - w / 2;
 			if (lx == rx) {
 				rw = rx + rw - bar->x[r] - w;
 				rx = bar->x[r] + w;
