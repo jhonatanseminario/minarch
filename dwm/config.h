@@ -178,8 +178,8 @@ static const char dmenufont[]            = "monospace:size=10";
 
 static char c000000[]                    = "#000000"; // placeholder value
 
-static char normfgcolor[]                = "#ffffff";
-static char normbgcolor[]                = "#000000";
+static char normfgcolor[]                = "#dfdfdf";
+static char normbgcolor[]                = "#202020";
 static char normbordercolor[]            = "#bfbfbf";
 static char normfloatcolor[]             = "#bfbfbf";
 
@@ -198,13 +198,13 @@ static char titleselbgcolor[]            = "#005577";
 static char titleselbordercolor[]        = "#005577";
 static char titleselfloatcolor[]         = "#005577";
 
-static char tagsnormfgcolor[]            = "#ffffff";
-static char tagsnormbgcolor[]            = "#000000";
+static char tagsnormfgcolor[]            = "#dfdfdf";
+static char tagsnormbgcolor[]            = "#202020";
 static char tagsnormbordercolor[]        = "#444444";
 static char tagsnormfloatcolor[]         = "#db8fd9";
 
-static char tagsselfgcolor[]             = "#000000";
-static char tagsselbgcolor[]             = "#ffffff";
+static char tagsselfgcolor[]             = "#202020";
+static char tagsselbgcolor[]             = "#dfdfdf";
 static char tagsselbordercolor[]         = "#005577";
 static char tagsselfloatcolor[]          = "#005577";
 
