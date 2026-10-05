@@ -180,13 +180,13 @@ static char c000000[]                    = "#000000"; // placeholder value
 
 static char normfgcolor[]                = "#dfdfdf";
 static char normbgcolor[]                = "#202020";
-static char normbordercolor[]            = "#606060";
-static char normfloatcolor[]             = "#606060";
+static char normbordercolor[]            = "#404040";
+static char normfloatcolor[]             = "#404040";
 
 static char selfgcolor[]                 = "#000000";
 static char selbgcolor[]                 = "#ffffff";
-static char selbordercolor[]             = "#dfdfdf";
-static char selfloatcolor[]              = "#dfdfdf";
+static char selbordercolor[]             = "#bfbfbf";
+static char selfloatcolor[]              = "#bfbfbf";
 
 static char titlenormfgcolor[]           = "#bbbbbb";
 static char titlenormbgcolor[]           = "#222222";
