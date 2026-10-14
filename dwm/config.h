@@ -203,8 +203,8 @@ static char tagsnormbgcolor[]            = "#202020";
 static char tagsnormbordercolor[]        = "#444444";
 static char tagsnormfloatcolor[]         = "#db8fd9";
 
-static char tagsselfgcolor[]             = "#202020";
-static char tagsselbgcolor[]             = "#dfdfdf";
+static char tagsselfgcolor[]             = "#404040";
+static char tagsselbgcolor[]             = "#bfbfbf";
 static char tagsselbordercolor[]         = "#005577";
 static char tagsselfloatcolor[]          = "#005577";
 
