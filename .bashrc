@@ -70,3 +70,4 @@ tui_bg() {
 }
 
 alias nvim='tui_bg "#282c34" nvim'
+alias opencode='tui_bg "#282c34" opencode'
