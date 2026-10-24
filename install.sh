@@ -362,6 +362,21 @@ setup_picom() {
     success "picom configuration ready"
 }
 
+setup_superfile() {
+    local script_dir="$(dirname "$(readlink -f "$0")")"
+    local superfile_dir="$HOME/.config/superfile"
+
+    info "Setting up superfile configuration..."
+
+    mkdir -p "$superfile_dir/theme"
+
+    cp "$script_dir/superfile/config.toml" "$superfile_dir/config.toml"
+    cp "$script_dir/superfile/theme/onedark-282c34.toml" \
+        "$superfile_dir/theme/onedark-282c34.toml"
+
+    success "superfile configuration ready"
+}
+
 setup_nvim() {
     local script_dir="$(dirname "$(readlink -f "$0")")"
     local nvim_dir="$HOME/.config/nvim"
@@ -465,6 +480,7 @@ main() {
     setup_flameshot
     setup_kitty
     setup_picom
+    setup_superfile
     setup_nvim
     setup_xresources
     setup_xinitrc
