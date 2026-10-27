@@ -57,7 +57,7 @@ sidebar_divider = "#818387"
 
 #-- Modals
 modal_fg = "#a7aab0"
-modal_bg = "#35363b"
+modal_bg = "#282c34"
 modal_border_active = "#51a8b3"
 modal_cancel_fg = "#414559"
 modal_cancel_bg = "#de5d68"
